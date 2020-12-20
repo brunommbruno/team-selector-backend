@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\TeamModel;
 
-class Team extends Model
+class MatchModel extends Model
 {
     use HasFactory;
+
+    public function teams(){
+        return $this->hasMany(TeamModel::class);
+    }
 }
