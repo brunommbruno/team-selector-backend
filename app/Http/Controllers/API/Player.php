@@ -8,6 +8,7 @@ use App\Models\TeamModel;
 use App\Models\PlayerModel;
 
 use App\Http\Requests\API\PlayerRequest;
+use App\Http\Resources\API\PlayerResource;
 
 class Player extends Controller
 {
@@ -18,12 +19,12 @@ class Player extends Controller
      */
     public function index(TeamModel $team)
     {
-        return $team->players;
+        return PlayerResource::collection($team->players);
     }
 
     public function indexAll()
     {
-        return PlayerModel::all();
+        return PlayerResource::collection(PlayerModel::all());
     }
 
     /**
@@ -44,7 +45,7 @@ class Player extends Controller
         $player->team_model()->associate($team);
         $player->save();
 
-        return $player;
+        return new PlayerResource($player);
     }
 
     /**
@@ -55,7 +56,7 @@ class Player extends Controller
      */
     public function show(PlayerModel $player)
     {
-        return $player;
+        return new PlayerResource($player);
     }
 
     /**
@@ -69,7 +70,7 @@ class Player extends Controller
     {
         $data = $request->all();
         $player->fill($data)->save();
-        return $player;
+        return PlayerResource($player);
     }
 
     /**
