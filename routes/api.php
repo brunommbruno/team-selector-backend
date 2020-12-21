@@ -34,6 +34,8 @@ Route::group(["prefix" => "matches"], function() {
     // /matches/{match_id}
     Route::group(["prefix" => "{match}"], function() {
 
+        Route::get("", [Match::class, "show"]);
+
         //DELETE /matches/1: deletes specific match
         Route::delete("", [Match::class, "destroy"]);
 
