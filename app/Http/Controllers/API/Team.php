@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\TeamModel;
 use App\Models\MatchModel;
 
+use App\Http\Requests\API\TeamRequest;
+
 class Team extends Controller
 {
     /**
@@ -31,7 +33,7 @@ class Team extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MatchModel $match)
+    public function store(TeamRequest $request, MatchModel $match)
     {
         $data = $request->only([
             'team_name',
@@ -66,7 +68,7 @@ class Team extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TeamModel $team)
+    public function update(TeamRequest $request, TeamModel $team)
     {
         $data = $request->all();
         $team->fill($data)->save();

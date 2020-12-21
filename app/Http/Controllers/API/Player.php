@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\TeamModel;
 use App\Models\PlayerModel;
 
+use App\Http\Requests\API\PlayerRequest;
+
 class Player extends Controller
 {
     /**
@@ -30,13 +32,12 @@ class Player extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, TeamModel $team)
+    public function store(PlayerRequest $request, TeamModel $team)
     {
         $data = $request->only([
             'player_name',
             'player_skill',
             'player_position',
-            'match_model_id'
         ]);
 
         $player = new PlayerModel($data);
@@ -64,7 +65,7 @@ class Player extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PlayerModel $player)
+    public function update(PlayerRequest $request, PlayerModel $player)
     {
         $data = $request->all();
         $player->fill($data)->save();
