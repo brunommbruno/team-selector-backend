@@ -2,6 +2,7 @@
 
 - [Matches](#matches)
   - [GET all matches](#get-all-matches)
+  - [GET a specific match]("get-a-specific-match)
   - [POST a match](#post-a-match)
   - [DELETE a match](#delete-a-specific-match)
 - [Team](#team)
@@ -28,6 +29,16 @@ To GET all the matches available use:
 
 This will return:
 - id
+- teams: []
+<br><br>
+
+## GET a specific match
+To GET a specific match use:
+`/matches/{match_id}`
+
+This will returm:
+- id
+- teams: []
 <br><br>
 
 ## POST a match
@@ -97,7 +108,6 @@ Inputs required:
 - team_name
 - team_color
 - team_kit
-- score
 <br><br>
 
 ## PATCH a team
