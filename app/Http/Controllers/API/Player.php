@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\TeamModel;
+use App\Models\PlayerModel;
 
 class Player extends Controller
 {
@@ -12,9 +14,14 @@ class Player extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TeamModel $team)
     {
-        //
+        return $team->players;
+    }
+
+    public function indexAll()
+    {
+        return PlayerModel::all();
     }
 
     /**
@@ -23,9 +30,19 @@ class Player extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, TeamModel $team)
     {
-        //
+        $data = $request->only([
+            'player_name',
+            'player_skill',
+            'player_position'
+        ]);
+
+        $player = new PlayerModel($data);
+        $player->team()->associate($team);
+        $player->save();
+
+        return $player;
     }
 
     /**
@@ -34,9 +51,9 @@ class Player extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PlayerModel $player)
     {
-        //
+        return $player;
     }
 
     /**
@@ -46,9 +63,11 @@ class Player extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, PlayerModel $player)
     {
-        //
+        $data = $request->all();
+        $player->fill($data)->save();
+        return $player;
     }
 
     /**
@@ -57,8 +76,10 @@ class Player extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PlayerModel $player)
     {
-        //
+        $player->delete();
+        
+        return response(null, 204);
     }
 }

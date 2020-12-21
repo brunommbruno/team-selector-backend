@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TeamModel;
+use App\Models\MatchModel;
 
 class Team extends Controller
 {
@@ -13,9 +14,15 @@ class Team extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexAll()
     {
+        //returns all teams
         return TeamModel::all();
+    }
+
+    public function index(MatchModel $match)
+    {
+        return $match->teams;
     }
 
     /**
@@ -24,9 +31,20 @@ class Team extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, MatchModel $match)
     {
-        //
+        $data = $request->only([
+            'team_name',
+            'team_color',
+            'team_kit',
+            'score'
+        ]);
+
+        $team = new TeamModel($data);
+        $team->matchmodel()->associate($match);
+        $team->save();
+
+        return $team;
     }
 
     /**
@@ -35,9 +53,9 @@ class Team extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TeamModel $team)
     {
-        //
+        return $team;
     }
 
     /**
@@ -47,9 +65,11 @@ class Team extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $team)
     {
-        //
+        $data = $request->all();
+        $team->fill($data)->save();
+        return $team;
     }
 
     /**

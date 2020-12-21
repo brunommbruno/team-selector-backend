@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\MatchModel;
 
 class Match extends Controller
 {
@@ -14,7 +15,7 @@ class Match extends Controller
      */
     public function index()
     {
-        //
+        return MatchModel::all();
     }
 
     /**
@@ -25,7 +26,9 @@ class Match extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        return MatchModel::create($data);
     }
 
     /**
@@ -57,8 +60,10 @@ class Match extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MatchModel $match)
     {
-        //
+        $match->delete();
+
+        return response(null, 204);
     }
 }
