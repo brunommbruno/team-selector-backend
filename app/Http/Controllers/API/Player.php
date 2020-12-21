@@ -35,11 +35,12 @@ class Player extends Controller
         $data = $request->only([
             'player_name',
             'player_skill',
-            'player_position'
+            'player_position',
+            'match_model_id'
         ]);
 
         $player = new PlayerModel($data);
-        $player->team()->associate($team);
+        $player->team_model()->associate($team);
         $player->save();
 
         return $player;

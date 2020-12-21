@@ -13,7 +13,7 @@ class PlayerModel extends Model
 
     protected $fillable = ["player_name", "player_skill", "player_position", "team_models_id"];
 
-    public function team(){
+    public function team_model(){
         return $this->belongsTo(TeamModel::class);
     }
 }

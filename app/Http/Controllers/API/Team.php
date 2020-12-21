@@ -37,11 +37,12 @@ class Team extends Controller
             'team_name',
             'team_color',
             'team_kit',
-            'score'
+            'score',
+            'match_model_id'
         ]);
 
         $team = new TeamModel($data);
-        $team->matchmodel()->associate($match);
+        $team->match_model()->associate($match);
         $team->save();
 
         return $team;
@@ -65,7 +66,7 @@ class Team extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $team)
+    public function update(Request $request, TeamModel $team)
     {
         $data = $request->all();
         $team->fill($data)->save();
@@ -81,5 +82,7 @@ class Team extends Controller
     public function destroy(TeamModel $team)
     {
         $team->delete();
+
+        return response(null, 204);
     }
 }

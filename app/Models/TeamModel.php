@@ -13,7 +13,7 @@ class TeamModel extends Model
 
     protected $fillable = ["team_name", "team_color", "team_kit", "score", "match_models_id"];
 
-    public function matchmodel(){
+    public function match_model(){
         return $this->belongsTo(MatchModel::class);
     }
 
