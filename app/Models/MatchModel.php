@@ -10,6 +10,7 @@ class MatchModel extends Model
 {
     use HasFactory;
 
+    //each match will be a parent to many team models
     public function teams(){
         return $this->hasMany(TeamModel::class);
     }

@@ -13,6 +13,7 @@ class PlayerModel extends Model
 
     protected $fillable = ["player_name", "player_skill", "player_position", "team_models_id"];
 
+    //each player is a child to a parent team model
     public function team_model(){
         return $this->belongsTo(TeamModel::class);
     }
