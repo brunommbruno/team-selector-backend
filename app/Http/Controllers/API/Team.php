@@ -17,15 +17,15 @@ class Team extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index(MatchModel $match)
+    {
+        return TeamResource::collection($match->teams);
+    }
+
     public function indexAll()
     {
         //returns all teams
         return TeamResource::collection(TeamModel::all());
-    }
-
-    public function index(MatchModel $match)
-    {
-        return TeamResource::collection($match->teams);
     }
 
     /**
