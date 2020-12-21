@@ -1,7 +1,5 @@
 # Restful API: Team Selector
 
-Base Url: `localhost:8000`
-
 -[Matches](#matches)
     -[GET all matches](#get-all-matches)
     -[POST a match](#post-a-match)
@@ -20,6 +18,8 @@ Base Url: `localhost:8000`
     -[POST a player](#post-a-player)
     -[PATCH a player](#patch-a-player)
     -[DELETE a player](#delete-a-player)
+
+Base Url: `localhost:8000`
 
 # Matches
 ## GET all matches
