@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MatchModel;
 
+use App\Http\Resources\API\MatchResource;
+
 class Match extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class Match extends Controller
      */
     public function index()
     {
-        return MatchModel::all();
+        return MatchResource::collection(MatchModel::all());
     }
 
     /**
@@ -28,7 +30,7 @@ class Match extends Controller
     {
         $data = $request->all();
 
-        return MatchModel::create($data);
+        return new MatchResource(MatchModel::create($data));
     }
 
     /**
