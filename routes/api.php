@@ -91,7 +91,7 @@ Route::group(["prefix" => "players"], function() {
     Route::group(["prefix" => "{player}"], function() {
 
         //GET /players/1: shows specific player
-        Route::get("", [Player::class, "index"]);
+        Route::get("", [Player::class, "show"]);
 
         //PATCH /players/1: updates specific player
         Route::patch("", [Player::class, "update"]);
