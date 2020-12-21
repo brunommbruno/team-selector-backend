@@ -8,6 +8,7 @@ use App\Models\TeamModel;
 use App\Models\MatchModel;
 
 use App\Http\Requests\API\TeamRequest;
+use App\Http\Resources\API\TeamResource;
 
 class Team extends Controller
 {
@@ -19,12 +20,12 @@ class Team extends Controller
     public function indexAll()
     {
         //returns all teams
-        return TeamModel::all();
+        return TeamResource::collection(TeamModel::all());
     }
 
     public function index(MatchModel $match)
     {
-        return $match->teams;
+        return TeamResource::collection($match->teams);
     }
 
     /**
@@ -47,7 +48,7 @@ class Team extends Controller
         $team->match_model()->associate($match);
         $team->save();
 
-        return $team;
+        return new TeamResource($team);
     }
 
     /**
@@ -58,7 +59,7 @@ class Team extends Controller
      */
     public function show(TeamModel $team)
     {
-        return $team;
+        return new TeamResource($team);
     }
 
     /**
@@ -72,7 +73,7 @@ class Team extends Controller
     {
         $data = $request->all();
         $team->fill($data)->save();
-        return $team;
+        return new TeamResource ($team);
     }
 
     /**
