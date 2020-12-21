@@ -19,7 +19,7 @@ class CreatePlayerModelsTable extends Migration
             $table->string("player_name", 20);
             $table->integer("player_skill");
             $table->string("player_position");
-            $table->foreignId("team_models_id")
+            $table->foreignId("team_model_id")
             ->constrained()
             ->onDelete("cascade");
         });

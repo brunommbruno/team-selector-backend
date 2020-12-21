@@ -20,7 +20,7 @@ class CreateTeamModelsTable extends Migration
             $table->string("team_color", 10);
             $table->string("team_kit", 20);
             $table->integer("score");
-            $table->foreignId("match_models_id")
+            $table->foreignId("match_model_id")
             ->constrained()
             ->onDelete("cascade");
         });
