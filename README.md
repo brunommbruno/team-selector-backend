@@ -2,7 +2,7 @@
 
 - [Matches](#matches)
   - [GET all matches](#get-all-matches)
-  - [GET a specific match]("get-a-specific-match)
+  - [GET a specific match](#get-a-specific-match)
   - [POST a match](#post-a-match)
   - [DELETE a match](#delete-a-specific-match)
 - [Team](#team)
