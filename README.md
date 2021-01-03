@@ -114,7 +114,7 @@ Inputs required:
 To PATCH a team use:
 `/team/{team_id}`
 
-Inputs allowed:
+Inputs required:
 - team_name
 - team_color
 - team_kit
@@ -186,7 +186,7 @@ Inputs required:
 To PATCH a player use:
 `/players/{player_id}`
 
-Inputs allowed:
+Inputs required:
 - player_name
 - player_skill
 - player_position
@@ -199,3 +199,40 @@ To DELETE a player use:
 This will return:
 - 204 (if successfully deleted)
 <br><br><br>
+
+# Team Selector Set Up
+
+## Clone
+To Clone this repo to your local machine:
+```
+git clone git@github.com:brunommbruno/team-selector-backend.git
+```
+<br>
+
+## Cd Into the project Folder
+<br>
+
+## Composer Dependencies
+```
+composer install
+```
+<br>
+## Install NPM Dependencies
+```
+npm install
+```
+<br>
+## Make a copy and rename the .env.example file
+```
+cp .env.example .env
+```
+<br>
+## Generate app key
+```
+php artisan key:generate
+```
+<br>
+## Run Migrations
+```
+php artisan migrate
+```
