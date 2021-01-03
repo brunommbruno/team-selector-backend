@@ -217,21 +217,25 @@ git clone git@github.com:brunommbruno/team-selector-backend.git
 composer install
 ```
 <br>
+
 ## Install NPM Dependencies
 ```
 npm install
 ```
 <br>
+
 ## Make a copy and rename the .env.example file
 ```
 cp .env.example .env
 ```
 <br>
+
 ## Generate app key
 ```
 php artisan key:generate
 ```
 <br>
+
 ## Run Migrations
 ```
 php artisan migrate
