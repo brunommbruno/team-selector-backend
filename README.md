@@ -20,7 +20,7 @@
   - [PATCH a player](#patch-a-player)
   - [DELETE a player](#delete-a-player)
 
-Base Url: `localhost:8000`
+Base Url: `https://www.teamselector.xyz/api`
 
 # Matches
 ## GET all matches
